@@ -1,0 +1,9 @@
+milton_poll_show:
+    path:       /poll/{name}/
+    defaults:   { _controller: 'milton_poll.controller.show_controller' }
+    methods:    GET
+
+milton_poll_submit:
+    path:       /poll/{name}/
+    defaults:   { _controller: 'milton_poll.controller.submit_controller' }
+    methods:    POST

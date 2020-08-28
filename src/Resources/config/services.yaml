@@ -1,0 +1,51 @@
+parameters:
+    milton_poll.controller.show_controller.class:       Milton\PollBundle\Controller\ShowController
+    milton_poll.controller.submit_controller.class:     Milton\PollBundle\Controller\SubmitController
+
+    milton_poll.form_factory.poll_form_factory.class:   Milton\PollBundle\Form\Factory\PollFormFactory
+
+    milton_poll.poll_provider.config_provider.class:    Milton\PollBundle\Poll\Provider\ConfigProvider
+    milton_poll.poll_provider.provider_pool.class:      Milton\PollBundle\Poll\Provider\ProviderPool
+
+
+services:
+    milton_poll.controller.show_controller:
+        class: '%milton_poll.controller.show_controller.class%'
+        arguments:
+            - '@milton_poll.poll_provider.provider_pool'
+            - '@milton_poll.form_factory.poll_form_factory'
+            - '@twig'
+        tags:
+            - controller.service_arguments
+
+    milton_poll.controller.submit_controller:
+        class:  '%milton_poll.controller.submit_controller.class%'
+        arguments:
+            - '@milton_poll.poll_provider.provider_pool'
+            - '@milton_poll.form_factory.poll_form_factory'
+            - '@event_dispatcher'
+            - '@twig'
+        tags:
+            - controller.service_arguments
+
+
+    milton_poll.form_factory.poll_form_factory:
+        class: '%milton_poll.form_factory.poll_form_factory.class%'
+        arguments:
+            - '@form.factory'
+            - '@router.default'
+
+
+    milton_poll.poll_provider.config_provider:
+        class:  '%milton_poll.poll_provider.config_provider.class%'
+        arguments:
+            - '%milton_poll.polls%'
+        tags:
+            - milton_poll.provider
+
+    milton_poll.poll_provider.provider_pool:
+        class: '%milton_poll.poll_provider.provider_pool.class%'
+
+    Milton\PollBundle\Poll\Provider\PollProviderInterface:      '@milton_poll.poll_provider.provider_pool'
+    Milton\PollBundle\Form\Factory\PollFormFactoryInterface:    '@milton_poll.form_factory.poll_form_factory'
+

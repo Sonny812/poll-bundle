@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="poll">
+        {{ form_start(form) }}
+        {% for question in form %}
+            <div id="question-{{ loop.index }}" class="poll-question">
+                {{ form_row(question) }}
+            </div>
+        {% endfor %}
+
+        <div class="button">
+            <button type="submit">{% trans %}poll.submit.button{% endtrans %}</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

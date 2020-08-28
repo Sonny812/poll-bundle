@@ -1,0 +1,5 @@
+poll:
+    submit:
+        button:     Submit
+        success:    Form successfully submited.
+
