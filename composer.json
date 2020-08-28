@@ -1,7 +1,7 @@
 {
     "type": "symfony-bundle",
     "name": "milton/poll-bundle",
-    "license": "proprietary",
+    "license": "MIT",
     "description": "Extensible Symfony bundle that provides functionality to create simple polls.",
     "authors": [
         {
