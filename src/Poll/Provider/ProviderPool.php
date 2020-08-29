@@ -33,6 +33,8 @@ class ProviderPool extends AbstractProvider
             return $this->polls;
         }
 
+        $this->polls = [];
+
         foreach ($this->providers as $provider) {
             foreach ($provider->getAllPolls() as $poll) {
                 $this->polls [] = $poll;
