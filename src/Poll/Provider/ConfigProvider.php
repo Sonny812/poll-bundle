@@ -40,7 +40,7 @@ class ConfigProvider extends AbstractProvider
     /**
      * @inheritDoc
      */
-    function getAllPolls(): iterable
+    public function getAllPolls(): iterable
     {
         if (null !== $this->polls) {
             return $this->polls;

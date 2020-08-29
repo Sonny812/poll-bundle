@@ -19,19 +19,19 @@ interface PollProviderInterface
     /**
      * @return array|\Milton\PollBundle\Poll\Poll[]
      */
-    function getAllPolls(): iterable;
+    public function getAllPolls(): iterable;
 
     /**
      * @param string $name
      *
      * @return \Milton\PollBundle\Poll\Poll
      */
-    function getPoll(string $name): Poll;
+    public function getPoll(string $name): Poll;
 
     /**
      * @param string $name
      *
      * @return bool
      */
-    function hasPoll(string $name): bool;
+    public function hasPoll(string $name): bool;
 }
