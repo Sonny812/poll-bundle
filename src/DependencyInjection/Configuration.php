@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('fields')->useAttributeAsKey('field_name')
                         ->arrayPrototype()
                         ->children()
-                            ->scalarNode('type')->defaultValue('string')->end()
+                            ->scalarNode('type')->defaultValue('text')->end()
                             ->arrayNode('options')->variablePrototype()->end()
                         ->end()
                     ->end()
