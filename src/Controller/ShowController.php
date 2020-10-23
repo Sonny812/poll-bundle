@@ -66,7 +66,7 @@ class ShowController
         $poll = $this->pollProvider->getPoll($name);
 
         if (!$poll->isEnabled()) {
-            throw new AccessDeniedHttpException(sprintf('Poll with name %s is not enabled.', $name))
+            throw new AccessDeniedHttpException(sprintf('Poll with name %s is not enabled.', $name));
         }
 
         $form = $this
