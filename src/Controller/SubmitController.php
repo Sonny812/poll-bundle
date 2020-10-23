@@ -17,6 +17,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Twig\Environment;
@@ -79,6 +80,10 @@ class SubmitController
         }
 
         $poll = $this->pollProvider->getPoll($name);
+
+        if (!$poll->isEnabled()) {
+            throw new AccessDeniedHttpException(sprintf('Poll with name %s is not enabled.', $name))
+        }
 
         $form = $this
             ->pollFormFactory
