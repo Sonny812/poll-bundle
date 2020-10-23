@@ -9,6 +9,7 @@
 
 namespace Milton\PollBundle\DependencyInjection;
 
+use Milton\PollBundle\Poll\Provider\PollProviderInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -30,5 +31,9 @@ class MiltonPollExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
+
+        $container
+            ->registerForAutoconfiguration(PollProviderInterface::class)
+            ->addTag('milton_poll.provider');
     }
 }
